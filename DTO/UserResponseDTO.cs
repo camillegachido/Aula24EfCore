@@ -11,3 +11,8 @@ public class UserOrdersResponseDTO : UserResponseDTO
 {
     public List<OrderResponseDTO> Pedidos {get;set; }
 }
+
+public class UpdateUserRequest
+{
+    public string Senha {get;set;}
+}

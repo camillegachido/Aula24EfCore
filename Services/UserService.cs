@@ -80,4 +80,13 @@ public class UserService : IUserService
         return users;
     }
 
+    public string UpdateUserPassword(Guid id, string password){
+        TbUser? user = _repository.GetUserById(id);
+        if(user == null){
+            return "error";
+        }
+
+        _repository.UpdateUser(id, password);
+        return "";
+    }
 }

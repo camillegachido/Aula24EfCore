@@ -28,4 +28,16 @@ public class UserController : ControllerBase
     {
         return _service.GetUsersWithOrders();
     }
+
+ 
+    [HttpPatch("{id}", Name = "UpdateUserPassword")]
+    public IActionResult UpdateUser([FromRoute] Guid id, [FromBody] UpdateUserRequest request){
+       string error = _service.UpdateUserPassword(id, request.Senha);
+
+        if(error == "error"){
+            return BadRequest();
+        }
+        
+        return Ok();
+    }
 }
