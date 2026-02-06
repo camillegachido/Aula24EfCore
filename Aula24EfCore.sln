@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aula24EfCore", "Aula24EfCore.csproj", "{68871F44-F187-117E-542C-3A0CE17079EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68871F44-F187-117E-542C-3A0CE17079EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68871F44-F187-117E-542C-3A0CE17079EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68871F44-F187-117E-542C-3A0CE17079EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68871F44-F187-117E-542C-3A0CE17079EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE1F590A-557A-4181-8A24-C5DF9B181D29}
+	EndGlobalSection
+EndGlobal

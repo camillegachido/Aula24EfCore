@@ -1,0 +1,6 @@
+@Aula24EfCore_HostAddress = http://localhost:5098
+
+GET {{Aula24EfCore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
