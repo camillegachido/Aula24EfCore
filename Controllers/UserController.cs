@@ -33,7 +33,13 @@ public class UserController : ControllerBase
        string error = _service.UpdateUserPassword(id, request.Senha);
 
         if(error == "error"){
-            return BadRequest();
+            ProblemDetails problemDetails = new ProblemDetails
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Title = "Usuário não existe na base de dados",
+                Detail = "Usuário não foi encontrado para o id informado",
+            };
+            return BadRequest(problemDetails);
         }
         
         return Ok();
