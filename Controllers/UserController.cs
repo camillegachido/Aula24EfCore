@@ -1,6 +1,4 @@
-using Aula24EfCore.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Aula24EfCore.Controllers;
 
@@ -39,5 +37,44 @@ public class UserController : ControllerBase
         }
         
         return Ok();
+    }
+
+    [HttpPost(Name = "CreateUser")]
+    public async Task<IActionResult> Create([FromBody] CreateUserRequestDTO request)
+    {
+        try
+        {
+            // Validação automática via ModelState (DataAnnotations)
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // Chamar o serviço para criar o usuário
+            var createdUser = await _service.CreateUserAsync(request);
+
+            // Retornar 201 Created com Location header
+            return CreatedAtAction(nameof(Get), new { id = createdUser.Id }, createdUser);
+        }
+        catch (InvalidOperationException ex)
+        {
+            // Email já existe - Conflict 409
+            var problemDetails = new ProblemDetails
+            {
+                Status = StatusCodes.Status409Conflict,
+                Title = "Conflito",
+                Detail = ex.Message,
+            };
+            return Conflict(problemDetails);
+        }
+        catch (Exception ex)
+        {
+            // Erro genérico - Internal Server Error 500
+            var problemDetails = new ProblemDetails
+            {
+                Status = StatusCodes.Status500InternalServerError,
+                Title = "Erro interno do servidor",
+                Detail = ex.Message
+            };
+            return StatusCode(StatusCodes.Status500InternalServerError, problemDetails);
+        }
     }
 }

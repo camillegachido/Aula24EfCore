@@ -33,4 +33,31 @@ public class UserRepository : IUserRepository
         findedUser.Password = newPassword;
         dbContext.SaveChanges();
     }
+    public async Task<TbUser?> GetUserByEmailAsync(string email)
+    {
+        return await dbContext.TbUsers.FirstOrDefaultAsync(u => u.Email == email);
+    }
+
+    public async Task<TbUser> CreateUserAsync(TbUser user)
+    {
+        user.Id = Guid.NewGuid();
+        user.CreatedAt = DateTime.UtcNow;
+        
+        dbContext.TbUsers.Add(user);
+        await dbContext.SaveChangesAsync();
+        
+        return user;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="user"></param>
+    /// <returns></returns>
+    public TbUser PostUser(TbUser user)
+    {
+        dbContext.TbUsers.Add(user);
+        dbContext.SaveChanges();
+        return user;
+    }
 }

@@ -1,4 +1,5 @@
 using Aula24EfCore.Models;
+using BCrypt.Net;
 
 // responsavel por toda logica do EndPoint
 // Conecta ao repositorio
@@ -10,6 +11,7 @@ public class UserService : IUserService
     {
         _repository = repository;
     }
+
 
     public List<UserResponseDTO> GetUsers()
     {
@@ -89,4 +91,34 @@ public class UserService : IUserService
         _repository.UpdateUser(id, password);
         return "";
     }
+    public async Task<UserResponseDTO> CreateUserAsync(CreateUserRequestDTO request)
+    {
+        // Validar se email já existe
+        var existingUser = await _repository.GetUserByEmailAsync(request.Email);
+        if (existingUser != null)
+            throw new InvalidOperationException($"Email '{request.Email}' já está cadastrado");
+
+        // Criar novo usuário
+        var newUser = new TbUser
+        {
+            Id = Guid.NewGuid(),
+            Name = request.Name,
+            Email = request.Email,
+            Password = BCrypt.Net.BCrypt.HashPassword(request.Password),
+            CreatedAt = DateTime.UtcNow
+        };
+
+        // Salvar no banco
+        var createdUser = await _repository.CreateUserAsync(newUser);
+
+        // Retornar DTO sem o password
+        return new UserResponseDTO
+        {
+            Id = createdUser.Id,
+            Nome = createdUser.Name,
+            Email = createdUser.Email,
+            CreatedAt = createdUser.CreatedAt
+        };
+    }
+
 }

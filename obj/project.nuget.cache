@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "pMsWuAQ4qUo=",
+  "dgSpecHash": "PZRXPfIPbP0=",
   "success": true,
   "projectFilePath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\cgach\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\cgach\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\cgach\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.2\\microsoft.aspnetcore.openapi.10.0.2.nupkg.sha512",
     "C:\\Users\\cgach\\.nuget\\packages\\microsoft.build.framework\\18.0.2\\microsoft.build.framework.18.0.2.nupkg.sha512",
