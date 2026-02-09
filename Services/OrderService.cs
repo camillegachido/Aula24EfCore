@@ -60,28 +60,6 @@ public class OrderService : IOrderService
         var createdOrder = await _repository.CreateOrderAsync(newOrder);
 
         // Retornar DTO
-        return MapToOrderResponseDTO(createdOrder);
-    }
-
-    private OrderResponseDTO MapToOrderResponseDTO(TbOrder order)
-    {
-        var response = new OrderResponseDTO
-        {
-            Id = order.Id,
-            CreatedAt = order.CreatedAt,
-            PaymentType = order.PaymentType,
-            Total = order.Total,
-            UserId = order.UserId,
-            Products = order.TbOrderProducts.Select(op => new OrderProductResponseDTO
-            {
-                ProductId = op.ProductId,
-                ProductName = op.Product.Name,
-                ProductValue = op.Product.Value,
-                Quantity = op.Quantity,
-                Subtotal = op.Product.Value * op.Quantity
-            }).ToList()
-        };
-
-        return response;
+        return OrderMapper.MapToOrderResponseDTO(createdOrder);
     }
 }
