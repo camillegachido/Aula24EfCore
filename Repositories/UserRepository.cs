@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 // Responsavel pela conexao com o banco de dados
 public class UserRepository : IUserRepository
 {
-    private PedidosContext dbContext;
+    private readonly PedidosContext dbContext;
 
     public UserRepository(PedidosContext context)
     {
