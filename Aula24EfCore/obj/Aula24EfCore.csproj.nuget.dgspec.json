@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore.csproj": {}
+    "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore\\Aula24EfCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore.csproj": {
+    "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore\\Aula24EfCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore.csproj",
+        "projectUniqueName": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore\\Aula24EfCore.csproj",
         "projectName": "Aula24EfCore",
-        "projectPath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore.csproj",
+        "projectPath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore\\Aula24EfCore.csproj",
         "packagesPath": "C:\\Users\\cgach\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\obj\\",
+        "outputPath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

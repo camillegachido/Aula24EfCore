@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PZRXPfIPbP0=",
+  "dgSpecHash": "sKCJ4aQss4I=",
   "success": true,
-  "projectFilePath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore.csproj",
+  "projectFilePath": "C:\\Users\\cgach\\Projetos\\rdi\\Aula24EfCore\\Aula24EfCore\\Aula24EfCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cgach\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\cgach\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
