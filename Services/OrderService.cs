@@ -4,16 +4,18 @@ using Aula24EfCore.Models;
 public class OrderService : IOrderService
 {
     private readonly IOrderRepository _repository;
+    private readonly IUserRepository _userrepository;
 
-    public OrderService(IOrderRepository repository)
+    public OrderService(IOrderRepository repository, IUserRepository userRepository)
     {
         _repository = repository;
+        _userrepository = userRepository;
     }
 
     public async Task<OrderResponseDTO> CreateOrderAsync(CreateOrderRequestDTO request)
     {
         // Validar se o usuário existe
-        var user = await _repository.GetUserByIdAsync(request.UserId);
+        var user = _userrepository.GetUserById(request.UserId);
         if (user == null)
             throw new InvalidOperationException($"Usuário com ID '{request.UserId}' não encontrado");
 
