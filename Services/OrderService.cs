@@ -25,13 +25,9 @@ public class OrderService : IOrderService
 
         foreach (var productRequest in request.Products)
         {
-            var product = await _repository.GetProductByIdAsync(productRequest.ProductId);
-            if (product == null)
-                throw new InvalidOperationException($"Produto com ID '{productRequest.ProductId}' não encontrado");
+            var product = await OrderValidator.CheckIfProductExists(_repository, productRequest);
 
-            // Validar estoque
-            if (product.StockQuantity.HasValue && product.StockQuantity.Value < productRequest.Quantity)
-                throw new InvalidOperationException($"Estoque insuficiente para o produto '{product.Name}'. Disponível: {product.StockQuantity}");
+            OrderValidator.CheckProductStock(product, productRequest);
 
             // Calcular subtotal
             decimal subtotal = product.Value * productRequest.Quantity;
