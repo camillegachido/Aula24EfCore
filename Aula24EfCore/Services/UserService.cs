@@ -120,5 +120,4 @@ public class UserService : IUserService
             CreatedAt = createdUser.CreatedAt
         };
     }
-
 }
