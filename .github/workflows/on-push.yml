@@ -1,0 +1,49 @@
+name: CI - Tests and Auto PR
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Restaurar dependências
+        run: dotnet restore Aula24EfCore.sln
+
+      - name: Build da solução
+        run: dotnet build Aula24EfCore.sln --no-restore --configuration Release
+
+      - name: Rodar testes unitários
+        run: dotnet test Aula24EfCore.Tests/Aula24EfCore.Tests.csproj
+
+  create-pull-request:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Criar Pull Request automático para main
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: ${{ github.ref_name }}
+          title: "Auto PR: ${{ github.ref_name }} → main"
+          body: |
+            Pull Request criado automaticamente pelo GitHub Actions.
+            
+            ✅ Build passou
+            ✅ Testes unitários passaram
