@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - main
+      - "auto-pr-*"
       
 permissions:
   contents: write
@@ -31,23 +32,30 @@ jobs:
       - name: Rodar testes unitários
         run: dotnet test Aula24EfCore.Tests/Aula24EfCore.Tests.csproj
 
-  create-pull-request:
+  open-pr:
     needs: build-and-test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
-        uses: actions/checkout@v4
+      - name: Criar Pull Request para main (se não existir)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
 
-      - name: Criar Pull Request automático para main
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          branch: ${{ github.ref_name }}
-          title: "Auto PR: ${{ github.ref_name }} → main"
-          body: |
-            Pull Request criado automaticamente pelo GitHub Actions.
-            
-            ✅ Build passou
-            ✅ Testes unitários passaram
+          echo "Branch atual: $BRANCH"
+
+          # Verifica se já existe PR aberto dessa branch para main
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number')
+
+          if [ -n "$EXISTING_PR" ]; then
+            echo "Já existe PR aberto: #$EXISTING_PR"
+            exit 0
+          fi
+
+          # Cria PR
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "Auto PR: $BRANCH → main" \
+            --body "Pull Request criado automaticamente após passar nos testes unitários."
